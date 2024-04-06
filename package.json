@@ -1,0 +1,36 @@
+{
+  "name": "@samhwang/llm-assistant-discord-bot",
+  "version": "1.0.0",
+  "description": "LLM Assistant Discord Bot",
+  "engines": {
+    "node": "^20.0.0",
+    "pnpm": "^8.0.0"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "scripts": {
+    "start": "tsx bin/index.ts",
+    "prebuild": "rimraf dist",
+    "build": "rimraf dist && tsup",
+    "pretest": "rimraf coverage",
+    "typecheck": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:CI": "pnpm run test && pnpm run typecheck",
+    "lint": "biome check ./src/**.ts",
+    "lint:fix": "biome check --apply ./src/**",
+    "lint:fix:unsafe": "biome check --apply-unsafe ./src/**",
+    "format": "biome format --write ./src/**",
+    "ci": "biome ci ./src/**"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.6.4",
+    "@types/node": "^20.12.5",
+    "@vitest/coverage-v8": "^1.4.0",
+    "esbuild": "^0.20.2",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.4",
+    "vitest": "^1.4.0"
+  }
+}
