@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "litellm-proxy"
+version = "0.1.0"
+description = "LiteLLM Proxy"
+authors = ["Sam Huynh <samhwang2112.dev@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+litellm = {extras = ["proxy"], version = "^1.34.29"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
