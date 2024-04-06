@@ -23,6 +23,7 @@
   "include": [
     "src",
     "bin",
+    "scripts",
     "tsup.config.ts",
     "vitest.config.ts"
   ]

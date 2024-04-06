@@ -8,3 +8,6 @@ coverage
 
 # Build output
 dist
+
+# Env
+.env

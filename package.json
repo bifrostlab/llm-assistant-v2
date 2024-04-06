@@ -16,17 +16,20 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:CI": "pnpm run test && pnpm run typecheck",
-    "lint": "biome check ./src/**.ts",
-    "lint:fix": "biome check --apply ./src/**",
-    "lint:fix:unsafe": "biome check --apply-unsafe ./src/**",
-    "format": "biome format --write ./src/**",
-    "ci": "biome ci ./src/**"
+    "lint": "biome check ./src/** ./bin/** ./scripts/**",
+    "lint:fix": "biome check --apply ./src/** ./bin/** ./scripts/**",
+    "lint:fix:unsafe": "biome check --apply-unsafe ./src/** ./bin/** ./scripts/**",
+    "format": "biome format --write ./src/** ./bin/** ./scripts/**",
+    "ci": "biome ci ./src/** ./bin/** ./scripts/**"
   },
   "dependencies": {
     "@discordjs/rest": "2.0.0",
+    "date-fns": "^3.6.0",
     "discord-api-types": "^0.37.79",
     "discord.js": "^14.14.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "oxide.ts": "^1.1.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.4",
