@@ -22,6 +22,12 @@
     "format": "biome format --write ./src/**",
     "ci": "biome ci ./src/**"
   },
+  "dependencies": {
+    "@discordjs/rest": "2.0.0",
+    "discord-api-types": "^0.37.79",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
+  },
   "devDependencies": {
     "@biomejs/biome": "^1.6.4",
     "@types/node": "^20.12.5",
