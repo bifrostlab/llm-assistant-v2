@@ -28,6 +28,7 @@
     "discord-api-types": "^0.37.79",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
+    "openai": "^4.33.0",
     "oxide.ts": "^1.1.0",
     "zod": "^3.22.4"
   },
