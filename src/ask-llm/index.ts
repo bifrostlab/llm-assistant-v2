@@ -1,8 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { Result } from 'oxide.ts';
 import type { AutocompleteHandler, Command, CommandHandler } from '../command-utils/builder';
+import { SUPPORTED_MODELS, SUPPORTED_MODELS_MAP, type SupportedModel, askQuestion } from '../llm/utils';
 import { logger } from '../utils/logger';
-import { SUPPORTED_MODELS, SUPPORTED_MODELS_MAP, type SupportedModel, askQuestion } from './utils';
 
 const data = new SlashCommandBuilder()
   .setName('ask')
