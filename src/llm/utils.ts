@@ -8,10 +8,15 @@ const RESERVED_LENGTH = 50; // for other additional strings. E.g. number `(1/4)`
 export const SUPPORTED_MODELS = ['gpt-3.5-turbo', 'gpt-4', 'phi', 'tinydolphin'] as const;
 export type SupportedModel = (typeof SUPPORTED_MODELS)[number];
 
+export const SUPPORTED_MODELS_MAP = SUPPORTED_MODELS.map((model) => ({
+  name: model,
+  value: model,
+}));
+
 /**
  * Calls the LLM Model with the specified question and server URL to get the answer.
  */
-export async function askQuestion(model: SupportedModel, question: string): Promise<string[] | undefined> {
+export async function askQuestion(model: SupportedModel, question: string): Promise<string[]> {
   const client = getClient();
   const op = await Result.safe(
     (async () => {
