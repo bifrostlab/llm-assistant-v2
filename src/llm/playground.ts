@@ -1,3 +1,4 @@
+import { logger } from '../utils/logger';
 import { getClient } from './client';
 
 async function test() {
@@ -8,7 +9,7 @@ async function test() {
     messages: [{ role: 'user', content: 'write a short poem' }],
   });
 
-  console.log(JSON.stringify(response));
+  logger.info(JSON.stringify(response));
 }
 
 test();

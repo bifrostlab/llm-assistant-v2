@@ -3,6 +3,7 @@ import { deployGuildCommands } from '../src/command-utils/deploy';
 import { commands } from '../src/commands';
 import { getCurrentUnixTime } from '../src/utils/date';
 import { loadEnv } from '../src/utils/load-env';
+import { logger } from '../src/utils/logger';
 
 async function deploy() {
   loadEnv();
@@ -10,7 +11,7 @@ async function deploy() {
   const clientId = process.env.CLIENT_ID ?? '';
   const guildId = process.env.GUILD_ID ?? '';
 
-  console.log('[deploy-guild-commands]: Deploying guild commands');
+  logger.info('[deploy-guild-commands]: Deploying guild commands');
   const op = await Result.safe(
     deployGuildCommands(commands, {
       token,
@@ -19,11 +20,11 @@ async function deploy() {
     })
   );
   if (op.isOk()) {
-    console.log('[deploy-guild-commands]: Guild commands deployed successfully');
+    logger.info('[deploy-guild-commands]: Guild commands deployed successfully');
     process.exit(0);
   }
 
-  console.error(`[deploy-guild-commands]: Cannot deploy guild commands. Timestamp ${getCurrentUnixTime()}`, op.unwrapErr());
+  logger.error(`[deploy-guild-commands]: Cannot deploy guild commands. Timestamp ${getCurrentUnixTime()}`, op.unwrapErr());
   process.exit(1);
 }
 

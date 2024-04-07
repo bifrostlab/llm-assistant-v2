@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { z } from 'zod';
+import { logger } from './logger';
 
 const configSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
@@ -23,7 +24,7 @@ export function loadEnv() {
 
   const validatedEnv = configSchema.safeParse(process.env);
   if (!validatedEnv.success) {
-    console.error(`Error loading environment details. ${validatedEnv.error.message}`);
+    logger.error(`Error loading environment details. ${validatedEnv.error.message}`);
     throw new Error('INVALID CONFIG!', { cause: validatedEnv.error.issues });
   }
 }
