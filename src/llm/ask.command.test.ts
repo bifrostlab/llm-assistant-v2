@@ -17,9 +17,9 @@ mockGetClient.mockReturnValue({
   chat: {
     completions: {
       create: mockChatCompletions,
-    } as unknown as OpenAI.Chat.Completions,
+    },
   },
-});
+} as unknown as OpenAI);
 
 describe('ask.command', () => {
   describe('autocomplete', () => {
