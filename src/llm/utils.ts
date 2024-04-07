@@ -19,13 +19,10 @@ export const SUPPORTED_MODELS_MAP = SUPPORTED_MODELS.map((model) => ({
 export async function askQuestion(model: SupportedModel, question: string): Promise<string[]> {
   const client = getClient();
   const op = await Result.safe(
-    (async () => {
-      const response = await client.chat.completions.create({
-        model,
-        messages: [{ role: 'user', content: question }],
-      });
-      return response;
-    })()
+    client.chat.completions.create({
+      model,
+      messages: [{ role: 'user', content: question }],
+    })
   );
   if (op.isErr()) {
     logger.error('[askQuestion]: Error in asking the LLM:', op.unwrapErr());
