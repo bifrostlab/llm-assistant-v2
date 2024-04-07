@@ -1,6 +1,6 @@
 import { Result } from 'oxide.ts';
-import { download } from '../src/llm/resume-utils';
 import { askQuestion } from '../src/llm/utils';
+import { download } from '../src/review-resume/downloader';
 import { logger } from '../src/utils/logger';
 
 async function test(): Promise<void> {
