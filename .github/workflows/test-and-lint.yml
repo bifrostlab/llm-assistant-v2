@@ -27,9 +27,7 @@ jobs:
         uses: ./.github/actions/setup-node-deps
 
       - name: Run tests
-        run: |
-          cp .env.ci .env
-          pnpm test:silent
+        run: pnpm test
 
   typecheck:
     runs-on: ubuntu-latest
