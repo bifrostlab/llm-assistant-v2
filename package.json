@@ -9,7 +9,7 @@
   "packageManager": "pnpm@8.15.6",
   "scripts": {
     "prepare": "husky",
-    "start": "tsx bin/index.ts",
+    "start": "tsx watch --clear-screen=false bin/index.ts",
     "prebuild": "rimraf dist",
     "build": "rimraf dist && tsup",
     "pretest": "rimraf coverage",
