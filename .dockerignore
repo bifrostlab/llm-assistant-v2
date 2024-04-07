@@ -30,3 +30,8 @@ LICENSE
 .github
 .idea
 .vscode
+
+# Not needed for prod
+litellm
+scripts
+playgrounds

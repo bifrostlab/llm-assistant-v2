@@ -7,23 +7,25 @@ import { logger } from '../utils/logger';
 export const PDFURL = z.string().url();
 export type PDFURL = z.infer<typeof PDFURL>;
 
-export async function download(url: string, filename: string) {
+export async function download(url: string, filename: string): Promise<void> {
+  let blob: Blob;
   if (url.includes('drive.google.com')) {
     const fileId = extractGDriveFileId(url);
-    return downloadFromGDrive(fileId, filename);
+    blob = await downloadFromGDrive(fileId);
+    await saveFile(blob, filename);
   }
 
-  return downloadGenericPDF(url, filename);
+  blob = await downloadGenericPDF(url);
+  await saveFile(blob, filename);
 }
 
 /**
  * Download the public file from Google Drive.
  * Download URL: https://docs.google.com/uc?export=download&confirm=t&id=1<FILE_ID>
  */
-async function downloadFromGDrive(id: string, filename: string): Promise<void> {
+async function downloadFromGDrive(id: string): Promise<Blob> {
   logger.info(`[download] Downloading file from Google Drive: ${id}`);
-  const response = await wretch('https://docs.google.com/uc').addon(QueryStringAddon).query({ export: 'download', confirm: 't', id: id }).get().blob();
-  await saveFile(response, filename);
+  return wretch('https://docs.google.com/uc').addon(QueryStringAddon).query({ export: 'download', confirm: 't', id: id }).get().blob();
 }
 
 /**
@@ -46,10 +48,9 @@ export function extractGDriveFileId(url: string): string {
 /**
  * Download the file from a generic URL.
  */
-async function downloadGenericPDF(url: string, filename: string): Promise<void> {
+async function downloadGenericPDF(url: string): Promise<Blob> {
   logger.info(`[download] Downloading file from URL: ${url}`);
-  const response = await wretch(url).get().blob();
-  await saveFile(response, filename);
+  return wretch(url).get().blob();
 }
 
 async function saveFile(blob: Blob, filename: string): Promise<void> {
