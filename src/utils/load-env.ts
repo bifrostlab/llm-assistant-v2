@@ -19,7 +19,7 @@ declare global {
   }
 }
 
-export function loadEnv() {
+export function loadEnv(): void {
   dotenv.config();
 
   const validatedEnv = configSchema.safeParse(process.env);

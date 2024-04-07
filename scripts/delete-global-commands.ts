@@ -3,7 +3,7 @@ import { deployGlobalCommands } from '../src/command-utils/deploy';
 import { loadEnv } from '../src/utils/load-env';
 import { logger } from '../src/utils/logger';
 
-async function deploy() {
+async function deploy(): Promise<void> {
   loadEnv();
   const token = process.env.TOKEN ?? '';
   const clientId = process.env.CLIENT_ID ?? '';

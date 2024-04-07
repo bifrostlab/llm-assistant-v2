@@ -1,7 +1,7 @@
 import { logger } from '../utils/logger';
 import { getClient } from './client';
 
-async function test() {
+async function test(): Promise<void> {
   const openai = getClient();
 
   const response = await openai.chat.completions.create({

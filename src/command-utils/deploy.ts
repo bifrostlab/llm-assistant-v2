@@ -14,12 +14,12 @@ interface DiscordRequestPayload {
   body: RequestData['body'];
 }
 
-async function registerCommands({ request, token, body }: DiscordRequestPayload) {
+async function registerCommands({ request, token, body }: DiscordRequestPayload): Promise<unknown> {
   const rest = new REST({ version: '10' }).setToken(token);
   return rest.put(request, { body });
 }
 
-export async function deployGuildCommands(commandList: Command[], config: DiscordRequestConfig) {
+export async function deployGuildCommands(commandList: Command[], config: DiscordRequestConfig): Promise<unknown> {
   const { token, clientId, guildId } = config;
 
   const commands = commandList.map((cmd) => cmd.data.toJSON());
@@ -28,7 +28,7 @@ export async function deployGuildCommands(commandList: Command[], config: Discor
   return registerCommands({ request, token, body: commands });
 }
 
-export async function deployGlobalCommands(commandList: Command[], config: Omit<DiscordRequestConfig, 'guildId'>) {
+export async function deployGlobalCommands(commandList: Command[], config: Omit<DiscordRequestConfig, 'guildId'>): Promise<unknown> {
   const { token, clientId } = config;
 
   const commands = commandList.map((cmd) => cmd.data.toJSON());

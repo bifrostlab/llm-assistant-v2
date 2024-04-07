@@ -6,7 +6,7 @@ import { getClient as getDiscordClient } from '../src/discord/client';
 import { loadEnv } from '../src/utils/load-env';
 import { logger } from '../src/utils/logger';
 
-async function main() {
+async function main(): Promise<void> {
   loadEnv();
   logger.info('[main]: STARTING BOT');
   const token = process.env.TOKEN ?? '';
