@@ -1,4 +1,5 @@
 import { Result } from 'oxide.ts';
+import { download } from '../src/llm/resume-utils';
 import { askQuestion } from '../src/llm/utils';
 import { logger } from '../src/utils/logger';
 
@@ -12,4 +13,9 @@ async function test(): Promise<void> {
   logger.info(data);
 }
 
-test();
+// test();
+
+async function go() {
+  await download('1W8wHR_OqRTr7N9A674tbNWtObN6RvwmE', '12345');
+}
+go();

@@ -35,6 +35,7 @@
     "openai": "^4.33.0",
     "oxide.ts": "^1.1.0",
     "winston": "^3.13.0",
+    "wretch": "^2.8.1",
     "zod": "^3.22.4"
   },
   "devDependencies": {
