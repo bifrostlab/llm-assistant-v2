@@ -32,16 +32,9 @@ export const execute: CommandHandler = async (interaction) => {
     return;
   }
 
-  const askOp = await Result.safe(askQuestion(model as SupportedModel, question));
-  if (askOp.isErr()) {
-    logger.error(`[ask]: Error asking question: ${askOp.unwrapErr().message}`);
-    interaction.reply('Error asking question. Please try again later.');
-    return;
-  }
-
-  const data = askOp.unwrap();
+  const answers = await askQuestion(model as SupportedModel, question);
   logger.info('[ask]: Got response from LLM', data);
-  await data.reduce(async (accum, chunk) => {
+  await answers.reduce(async (accum, chunk) => {
     await accum;
     await interaction.reply(chunk);
     return undefined;

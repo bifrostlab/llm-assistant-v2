@@ -102,12 +102,13 @@ describe('ask.command', () => {
             return 'asdf1234';
         }
       });
+      mockChatCompletions.mockRejectedValueOnce(new Error('Synthetic Error.'));
       const respondInput = captor<Parameters<ChatInputCommandInteraction['reply']>['0']>();
 
       await execute(mockChatInputInteraction);
 
       expect(mockChatInputInteraction.reply).toBeCalledWith(respondInput);
-      expect(respondInput.value).toContain('Error asking question.');
+      expect(respondInput.value).toContain('Error in asking the LLM');
     });
 
     it('Should respond with no response if there is no response', async () => {
