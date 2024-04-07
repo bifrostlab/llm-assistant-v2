@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.4",
+    "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.12.5",
     "@vitest/coverage-v8": "^1.4.0",
     "esbuild": "^0.20.2",

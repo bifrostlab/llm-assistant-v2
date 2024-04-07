@@ -1,4 +1,4 @@
-import { InteractionResponse, SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
 import { Result } from 'oxide.ts';
 import type { AutocompleteHandler, Command, CommandHandler } from '../command-utils/builder';
 import { logger } from '../utils/logger';

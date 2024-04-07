@@ -28,7 +28,7 @@ export async function askQuestion(model: SupportedModel, question: string): Prom
     })()
   );
   if (op.isErr()) {
-    logger.error('[askQuestion]: Error asking the LLM:', op.unwrapErr());
+    logger.error('[askQuestion]: Error in asking the LLM:', op.unwrapErr());
     return splitResponse(`Error in asking the LLM: ${op.unwrapErr()}`);
   }
 
