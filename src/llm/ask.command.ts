@@ -13,7 +13,10 @@ const data = new SlashCommandBuilder()
 export const autocomplete: AutocompleteHandler = async (interaction) => {
   const searchTerm = interaction.options.getString('model', true).trim().toLowerCase();
 
-  const options = SUPPORTED_MODELS_MAP.filter((model) => model.name.includes(searchTerm)).slice(0, 25);
+  const options = SUPPORTED_MODELS_MAP.filter((model) => {
+    if (!searchTerm) return true;
+    return model.name.includes(searchTerm);
+  }).slice(0, 25);
   interaction.respond(options);
 };
 
