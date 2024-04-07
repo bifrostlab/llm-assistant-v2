@@ -5,15 +5,14 @@ import QueryStringAddon from 'wretch/addons/queryString';
 
 // https://drive.google.com/file/d/<FILE_ID>/view?usp=sharing
 // https://docs.google.com/uc?export=download&confirm=t&id=1<FILE_ID>
-export async function download(id: string, userId: string) {
+export async function download(id: string, filename: string) {
   const response = await wretch('https://docs.google.com/uc').addon(QueryStringAddon).query({ export: 'download', confirm: 't', id: id }).get().blob();
   console.log({ response });
 
-  const filePath = getOutputFileName(userId);
-  fs.writeFileSync(filePath, Buffer.from(new Uint8Array(await response.arrayBuffer())));
+  fs.writeFileSync(filename, Buffer.from(new Uint8Array(await response.arrayBuffer())));
 }
 
-function getOutputFileName(userId: string) {
+export function getOutputFileName(userId: string) {
   return path.resolve(__dirname, 'resumes', `resume-${userId}.pdf`);
 }
 
@@ -25,7 +24,7 @@ function extractFileId(url: string) {
   return match ? match[1] : null;
 }
 
-function deleteOutputFile(userId: string) {
+export function deleteOutputFile(userId: string) {
   const filePath = getOutputFileName(userId);
   fs.rmSync(filePath);
 }
