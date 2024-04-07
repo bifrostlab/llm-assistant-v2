@@ -1,15 +1,15 @@
+import { Result } from 'oxide.ts';
 import { logger } from '../utils/logger';
-import { getClient } from './client';
+import { askQuestion } from './utils';
 
 async function test(): Promise<void> {
-  const openai = getClient();
+  const response = await Result.safe(askQuestion('tinydolphin', 'What is the capital of Australia?'));
+  if (response.isErr()) {
+    logger.error(response.unwrapErr());
+  }
 
-  const response = await openai.chat.completions.create({
-    model: 'ollama/phi',
-    messages: [{ role: 'user', content: 'write a short poem' }],
-  });
-
-  logger.info(JSON.stringify(response));
+  const data = response.unwrap();
+  logger.info(data);
 }
 
 test();

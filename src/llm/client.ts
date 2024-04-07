@@ -1,5 +1,6 @@
-import { OpenAI } from 'openai';
 import 'openai/shims/web';
+
+import { OpenAI } from 'openai';
 
 let client: OpenAI | null = null;
 
