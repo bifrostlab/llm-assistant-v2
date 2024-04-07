@@ -20,7 +20,10 @@
     "lint:fix": "biome check --apply ./src/** ./bin/** ./scripts/**",
     "lint:fix:unsafe": "biome check --apply-unsafe ./src/** ./bin/** ./scripts/**",
     "format": "biome format --write ./src/** ./bin/** ./scripts/**",
-    "ci": "biome ci ./src/** ./bin/** ./scripts/**"
+    "ci": "biome ci ./src/** ./bin/** ./scripts/**",
+    "deploy:command": "tsx scripts/deploy-guild-commands.ts",
+    "delete:command": "tsx scripts/delete-guild-commands.ts",
+    "delete:command-global": "tsx scripts/delete-global-commands.ts"
   },
   "dependencies": {
     "@discordjs/rest": "2.0.0",
