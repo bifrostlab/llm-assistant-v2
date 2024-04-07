@@ -1,6 +1,6 @@
 import { Result } from 'oxide.ts';
-import { logger } from '../utils/logger';
-import { askQuestion } from './utils';
+import { askQuestion } from '../src/llm/utils';
+import { logger } from '../src/utils/logger';
 
 async function test(): Promise<void> {
   const response = await Result.safe(askQuestion('tinydolphin', 'What is the capital of Australia?'));
