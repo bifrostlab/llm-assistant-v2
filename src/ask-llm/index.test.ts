@@ -1,13 +1,12 @@
 import { faker } from '@faker-js/faker';
-import type { AutocompleteInteraction, ChatInputCommandInteraction } from 'discord.js';
+import type { ChatInputCommandInteraction } from 'discord.js';
 import type { OpenAI } from 'openai';
 import type { ChatCompletion } from 'openai/resources/chat/completions';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { captor, mockDeep, mockReset } from 'vitest-mock-extended';
 import { getClient } from '../llm/client';
-import { autocomplete, execute } from './index';
+import { execute } from './index';
 
-const mockAutocompleteInteraction = mockDeep<AutocompleteInteraction>();
 const mockChatInputInteraction = mockDeep<ChatInputCommandInteraction>();
 
 const mockChatCompletions = vi.fn();
@@ -22,53 +21,6 @@ mockGetClient.mockReturnValue({
 } as unknown as OpenAI);
 
 describe('ask.command', () => {
-  describe('autocomplete', () => {
-    beforeEach(() => {
-      mockReset(mockAutocompleteInteraction);
-    });
-
-    it("Should return nothing if the short term isn't long enough", async () => {
-      mockAutocompleteInteraction.options.getString.mockReturnValueOnce('solve');
-      const respondInput = captor<Parameters<AutocompleteInteraction['respond']>['0']>();
-
-      await autocomplete(mockAutocompleteInteraction);
-
-      expect(mockAutocompleteInteraction.respond).toBeCalledWith(respondInput);
-      expect(respondInput.value.length).toEqual(0);
-    });
-
-    it('Should return nothing if no options are found', async () => {
-      mockAutocompleteInteraction.options.getString.mockReturnValueOnce('some random search that not existed');
-      const respondInput = captor<Parameters<AutocompleteInteraction['respond']>['0']>();
-
-      await autocomplete(mockAutocompleteInteraction);
-
-      expect(mockAutocompleteInteraction.respond).toBeCalledWith(respondInput);
-      expect(respondInput.value.length).toEqual(0);
-    });
-
-    it('Should return some options if search term is long enough and a result can be found', async () => {
-      mockAutocompleteInteraction.options.getString.mockReturnValueOnce('phi');
-      const respondInput = captor<Parameters<AutocompleteInteraction['respond']>['0']>();
-
-      await autocomplete(mockAutocompleteInteraction);
-
-      expect(mockAutocompleteInteraction.respond).toBeCalledWith(respondInput);
-      expect(respondInput.value).toMatchInlineSnapshot(`
-      [
-        {
-          "name": "phi",
-          "value": "phi",
-        },
-        {
-          "name": "tinydolphin",
-          "value": "tinydolphin",
-        },
-      ]
-    `);
-    });
-  });
-
   describe('execute', () => {
     beforeEach(() => {
       mockReset(mockChatInputInteraction);

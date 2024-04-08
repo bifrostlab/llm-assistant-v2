@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
-import type { AutocompleteHandler, Command, CommandHandler } from '../command-utils/builder';
-import { SUPPORTED_MODELS, SUPPORTED_MODELS_MAP, type SupportedModel, askQuestion } from '../llm/utils';
+import type { Command, CommandHandler } from '../command-utils/builder';
+import { selectModelAutocomplete } from '../llm/select-model-autocomplete';
+import { SUPPORTED_MODELS, type SupportedModel, askQuestion } from '../llm/utils';
 import { logger } from '../utils/logger';
 
 const data = new SlashCommandBuilder()
@@ -8,16 +9,6 @@ const data = new SlashCommandBuilder()
   .setDescription('Ask an LLM to answer anything')
   .addStringOption((option) => option.setName('model').setDescription('Choose an LLM model').setRequired(true).setAutocomplete(true))
   .addStringOption((option) => option.setName('question').setDescription('Enter your prompt').setRequired(true).setMinLength(10));
-
-export const autocomplete: AutocompleteHandler = async (interaction) => {
-  const searchTerm = interaction.options.getString('model', true).trim().toLowerCase();
-
-  const options = SUPPORTED_MODELS_MAP.filter((model) => {
-    if (!searchTerm) return true;
-    return model.name.includes(searchTerm);
-  }).slice(0, 25);
-  interaction.respond(options);
-};
 
 export const execute: CommandHandler = async (interaction) => {
   const model = interaction.options.getString('model', true).trim().toLowerCase();
@@ -43,7 +34,7 @@ export const execute: CommandHandler = async (interaction) => {
 const command: Command = {
   data,
   execute,
-  autocomplete,
+  autocomplete: selectModelAutocomplete,
 };
 
 export default command;
