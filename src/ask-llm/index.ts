@@ -1,7 +1,8 @@
 import { SlashCommandBuilder } from 'discord.js';
+import { Result } from 'oxide.ts';
 import type { Command, CommandHandler } from '../command-utils/builder';
 import { selectModelAutocomplete } from '../llm/select-model-autocomplete';
-import { SUPPORTED_MODELS, type SupportedModel, askQuestion } from '../llm/utils';
+import { askQuestion, findModel } from '../llm/utils';
 import { logger } from '../utils/logger';
 
 const data = new SlashCommandBuilder()
@@ -15,14 +16,15 @@ export const execute: CommandHandler = async (interaction) => {
   const question = interaction.options.getString('question', true).trim();
   logger.info(`[ask]: Asking ${model} model with prompt: ${question}`);
 
-  const hasModel = SUPPORTED_MODELS.find((option) => option.toLowerCase() === model);
-  if (!hasModel) {
+  const findModelOp = Result.safe(() => findModel(model));
+  if (findModelOp.isErr()) {
     logger.info(`[ask]: Invalid model ${model}`);
     interaction.reply('Invalid model. Please choose from the available models.');
     return;
   }
+  const supportedModel = findModelOp.unwrap();
 
-  const answers = await askQuestion(model as SupportedModel, question);
+  const answers = await askQuestion(supportedModel, question);
   logger.info('[ask]: Got response from LLM', data);
   await answers.reduce(async (accum, chunk) => {
     await accum;
