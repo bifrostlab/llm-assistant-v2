@@ -16,7 +16,7 @@ export const SUPPORTED_MODELS_MAP = SUPPORTED_MODELS.map((model) => ({
 /**
  * Calls the LLM Model with the specified question and server URL to get the answer.
  */
-export async function askQuestion(model: SupportedModel, question: string): Promise<string[]> {
+export async function askQuestion(model: SupportedModel, question: string, attachQuestion = true): Promise<string[]> {
   const client = getClient();
   const op = await Result.safe(
     client.chat.completions.create({
@@ -32,7 +32,9 @@ export async function askQuestion(model: SupportedModel, question: string): Prom
   const content = op.unwrap().choices[0].message.content || 'No response from the model. Please try again';
   let chunks = splitResponse(content);
   chunks = addNumber(chunks);
-  chunks = addQuestionPrefix(question, chunks);
+  if (attachQuestion) {
+    chunks = addQuestionPrefix(question, chunks);
+  }
 
   return chunks;
 }

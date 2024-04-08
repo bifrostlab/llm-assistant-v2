@@ -20,7 +20,7 @@ mockGetClient.mockReturnValue({
   },
 } as unknown as OpenAI);
 
-describe('ask command', () => {
+describe('review resume command', () => {
   describe('execute', () => {
     beforeEach(() => {
       mockReset(mockChatInputInteraction);
