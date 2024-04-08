@@ -4,7 +4,7 @@ import QueryStringAddon from 'wretch/addons/queryString';
 import { z } from 'zod';
 import { logger } from '../utils/logger';
 
-export const PDFURL = z.string().url();
+export const PDFURL = z.union([z.string().url().endsWith('.pdf'), z.string().url().includes('drive.google.com')]);
 export type PDFURL = z.infer<typeof PDFURL>;
 
 export async function download(url: string, filename: string): Promise<void> {
