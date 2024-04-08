@@ -32,8 +32,11 @@ describe('ask command', () => {
           case 'model':
             return 'invalidmodel';
 
-          default:
+          case 'question':
             return 'asdf1234';
+
+          default:
+            throw new Error('Invalid');
         }
       });
       const respondInput = captor<Parameters<ChatInputCommandInteraction['reply']>['0']>();
@@ -50,8 +53,11 @@ describe('ask command', () => {
           case 'model':
             return 'tinydolphin';
 
-          default:
+          case 'question':
             return 'asdf1234';
+
+          default:
+            throw new Error('Invalid');
         }
       });
       mockChatCompletions.mockRejectedValueOnce(new Error('Synthetic Error.'));
@@ -69,8 +75,11 @@ describe('ask command', () => {
           case 'model':
             return 'tinydolphin';
 
-          default:
+          case 'question':
             return 'asdf1234';
+
+          default:
+            throw new Error('Invalid');
         }
       });
       mockChatCompletions.mockResolvedValueOnce({
@@ -103,8 +112,11 @@ describe('ask command', () => {
           case 'model':
             return 'tinydolphin';
 
-          default:
+          case 'question':
             return 'asdf1234';
+
+          default:
+            throw new Error('Invalid');
         }
       });
       const mockAnswer = faker.lorem.sentence();
