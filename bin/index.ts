@@ -9,7 +9,7 @@ import { logger } from '../src/utils/logger';
 async function main(): Promise<void> {
   loadEnv();
   logger.info('[main]: STARTING BOT');
-  const token = process.env.TOKEN ?? '';
+  const token = process.env.TOKEN;
   const client = await getDiscordClient({ token });
 
   if (!client.user) throw new Error('Something went wrong!');

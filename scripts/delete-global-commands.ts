@@ -5,8 +5,8 @@ import { logger } from '../src/utils/logger';
 
 async function deploy(): Promise<void> {
   loadEnv();
-  const token = process.env.TOKEN ?? '';
-  const clientId = process.env.CLIENT_ID ?? '';
+  const token = process.env.TOKEN;
+  const clientId = process.env.CLIENT_ID;
 
   logger.info('[delete-global-commands]: Deleting global commands');
   const op = await Result.safe(

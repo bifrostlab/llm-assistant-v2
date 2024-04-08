@@ -7,9 +7,13 @@ import { logger } from '../src/utils/logger';
 
 async function deploy(): Promise<void> {
   loadEnv();
-  const token = process.env.TOKEN ?? '';
-  const clientId = process.env.CLIENT_ID ?? '';
-  const guildId = process.env.GUILD_ID ?? '';
+  const token = process.env.TOKEN;
+  const clientId = process.env.CLIENT_ID;
+  const guildId = process.env.GUILD_ID;
+
+  if (!guildId) {
+    throw new Error('Missing GUILD ID');
+  }
 
   logger.info('[deploy-guild-commands]: Deploying guild commands');
   const op = await Result.safe(
