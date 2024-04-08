@@ -19,6 +19,11 @@ export async function download(url: string, filename: string): Promise<void> {
   await saveFile(blob, filename);
 }
 
+export function cleanup(filename: string): void {
+  logger.info(`[cleanup]: Cleaning up file: ${filename}`);
+  fs.rmSync(filename, { force: true });
+}
+
 /**
  * Download the public file from Google Drive.
  * Download URL: https://docs.google.com/uc?export=download&confirm=t&id=1<FILE_ID>
