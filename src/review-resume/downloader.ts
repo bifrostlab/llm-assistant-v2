@@ -13,6 +13,7 @@ export async function download(url: string, filename: string): Promise<void> {
     const fileId = extractGDriveFileId(url);
     blob = await downloadFromGDrive(fileId);
     await saveFile(blob, filename);
+    return;
   }
 
   blob = await downloadGenericPDF(url);
