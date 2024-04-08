@@ -10,6 +10,9 @@ const configSchema = z.object({
   TOKEN: z.string(),
   CLIENT_ID: z.string(),
   GUILD_ID: z.string().optional(),
+
+  // AI Server URL
+  AI_SERVER_URL: z.string().url(),
 });
 type ConfigSchema = z.infer<typeof configSchema>;
 

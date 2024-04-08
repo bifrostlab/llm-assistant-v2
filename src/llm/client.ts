@@ -7,7 +7,7 @@ let client: OpenAI | null = null;
 export function getClient(): OpenAI {
   if (!client) {
     client = new OpenAI({
-      baseURL: 'http://0.0.0.0:4000',
+      baseURL: process.env.AI_SERVER_URL,
       apiKey: 'FAKE',
     });
   }
