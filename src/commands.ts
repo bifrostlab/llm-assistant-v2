@@ -1,4 +1,4 @@
-import type { Command } from './command-utils/builder';
+import type { Command } from './discord/command-builder';
 
 import askLLMCommand from './ask-llm';
 import reviewResumeCommand from './review-resume';

@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { Result } from 'oxide.ts';
-import type { Command, CommandHandler } from '../command-utils/builder';
+import type { Command, CommandHandler } from '../discord/command-builder';
 import { selectModelAutocomplete } from '../llm/select-model-autocomplete';
 import { askQuestion, findModel } from '../llm/utils';
 import { logger } from '../utils/logger';

@@ -1,4 +1,4 @@
-import type { AutocompleteHandler } from '../command-utils/builder';
+import type { AutocompleteHandler } from '../discord/command-builder';
 import { SUPPORTED_MODELS_MAP } from '../llm/utils';
 
 export const selectModelAutocomplete: AutocompleteHandler = async (interaction) => {

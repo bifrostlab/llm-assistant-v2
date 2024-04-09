@@ -1,5 +1,5 @@
 import { Result } from 'oxide.ts';
-import { deployGlobalCommands } from '../src/command-utils/deploy';
+import { deployGlobalCommands } from '../src/discord/deploy';
 import { loadEnv } from '../src/utils/load-env';
 import { logger } from '../src/utils/logger';
 

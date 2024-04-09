@@ -1,6 +1,6 @@
 import { Result } from 'oxide.ts';
-import { deployGuildCommands } from '../src/command-utils/deploy';
 import { commands } from '../src/commands';
+import { deployGuildCommands } from '../src/discord/deploy';
 import { getCurrentUnixTime } from '../src/utils/date';
 import { loadEnv } from '../src/utils/load-env';
 import { logger } from '../src/utils/logger';

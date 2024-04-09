@@ -1,8 +1,8 @@
 import { InteractionType } from 'discord-api-types/v10';
 import { Result } from 'oxide.ts';
-import { deployGlobalCommands } from '../src/command-utils/deploy';
 import { commands } from '../src/commands';
 import { getClient as getDiscordClient } from '../src/discord/client';
+import { deployGlobalCommands } from '../src/discord/deploy';
 import { loadEnv } from '../src/utils/load-env';
 import { logger } from '../src/utils/logger';
 
