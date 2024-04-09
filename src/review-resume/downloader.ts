@@ -4,19 +4,20 @@ import QueryStringAddon from 'wretch/addons/queryString';
 import { z } from 'zod';
 import { logger } from '../utils/logger';
 
-export const PDFURL = z.union([z.string().url().endsWith('.pdf'), z.string().url().includes('drive.google.com')]);
+const genericPDFUrl = z.string().url().endsWith('.pdf');
+const gDrivePDFUrl = z.string().url().includes('drive.google.com');
+export const PDFURL = z.union([genericPDFUrl, gDrivePDFUrl]);
 export type PDFURL = z.infer<typeof PDFURL>;
 
 export async function download(url: string, filename: string): Promise<void> {
-  let blob: Blob;
   if (url.includes('drive.google.com')) {
     const fileId = extractGDriveFileId(url);
-    blob = await downloadFromGDrive(fileId);
+    const blob = await downloadFromGDrive(fileId);
     await saveFile(blob, filename);
     return;
   }
 
-  blob = await downloadGenericPDF(url);
+  const blob = await downloadGenericPDF(url);
   await saveFile(blob, filename);
 }
 
