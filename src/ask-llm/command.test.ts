@@ -5,7 +5,7 @@ import type { ChatCompletion } from 'openai/resources/chat/completions';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { captor, mockDeep, mockReset } from 'vitest-mock-extended';
 import { getClient } from '../llm/client';
-import { execute } from './index';
+import { execute } from './command';
 
 const mockChatInputInteraction = mockDeep<ChatInputCommandInteraction>();
 
