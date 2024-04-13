@@ -16,7 +16,7 @@ jobs:
       #   id: docker_meta
       #   uses: docker/metadata-action@v5
       #   with:
-      #     images: ghcr.io/samhwang/llm-assistant
+      #     images: ghcr.io/bifrostlab/llm-assistant
       #     tags: |
       #       type=ref,event=branch
       #       type=sha

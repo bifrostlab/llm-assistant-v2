@@ -1,6 +1,6 @@
 {
   "name": "TypeScript + NodeJS + PNPM",
-  "image": "ghcr.io/samhwang/llm-assistant-ts/devcontainer:latest",
+  "image": "ghcr.io/bifrostlab/llm-assistant-v2/devcontainer:latest",
   "customizations": {
     "vscode": {
       "extensions": [
