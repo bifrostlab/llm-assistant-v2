@@ -1,5 +1,11 @@
 # LLM Assistant Discord Bot
 
+## ARCHIVED NOTICE
+
+This project is now archived in favor of merging into the main ghcr.io/samhwang repo.
+
+---
+
 Porting [llm-assistant](https://github.com/bifrostlab/llm-assistant) into TS. Project is bootstrapped with [ts-starter-template](https://github.com/samhwang/ts-starter-template)
 
 ## Prerequisite
