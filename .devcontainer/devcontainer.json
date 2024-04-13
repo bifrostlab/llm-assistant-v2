@@ -1,0 +1,19 @@
+{
+  "name": "TypeScript + NodeJS + PNPM",
+  "image": "ghcr.io/samhwang/llm-assistant-ts/devcontainer:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "GitHub.vscode-github-actions",
+        "GitHub.copilot",
+        "EditorConfig.EditorConfig",
+        "mikestead.dotenv",
+        "ms-azuretools.vscode-docker",
+        "vitest.explorer",
+        "yoavbls.pretty-ts-errors"
+      ]
+    }
+  },
+  "postCreateCommand": "$(pwd)/.devcontainer/post-install.sh"
+}
