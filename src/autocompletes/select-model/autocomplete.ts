@@ -1,5 +1,5 @@
-import type { AutocompleteHandler } from '../discord/command-builder';
-import { SUPPORTED_MODELS_MAP } from '../llm/utils';
+import { SUPPORTED_MODELS_MAP } from '../../llm/utils';
+import type { AutocompleteHandler } from '../builder';
 
 export const selectModelAutocomplete: AutocompleteHandler = async (interaction) => {
   const searchTerm = interaction.options.getString('model', true).trim().toLowerCase();

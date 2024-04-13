@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import wretch from 'wretch';
 import QueryStringAddon from 'wretch/addons/queryString';
 import { z } from 'zod';
-import { logger } from '../utils/logger';
+import { logger } from '../../utils/logger';
 
 const genericPDFUrl = z.string().url().endsWith('.pdf');
 const gDrivePDFUrl = z.string().url().includes('drive.google.com');

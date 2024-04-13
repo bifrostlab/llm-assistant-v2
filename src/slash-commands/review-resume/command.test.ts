@@ -4,14 +4,14 @@ import type { OpenAI } from 'openai';
 import type { ChatCompletion } from 'openai/resources/chat/completions';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { captor, mockDeep, mockReset } from 'vitest-mock-extended';
-import { getClient } from '../llm/client';
+import { getClient } from '../../llm/client';
 import { execute } from './command';
 import * as reader from './reader';
 
 const mockChatInputInteraction = mockDeep<ChatInputCommandInteraction>();
 
 const mockChatCompletions = vi.fn();
-vi.mock('../llm/client');
+vi.mock('../../llm/client');
 const mockGetClient = vi.mocked(getClient);
 mockGetClient.mockReturnValue({
   chat: {

@@ -1,7 +1,7 @@
 import type { AutocompleteInteraction } from 'discord.js';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { captor, mockDeep, mockReset } from 'vitest-mock-extended';
-import { selectModelAutocomplete } from './select-model-autocomplete';
+import { selectModelAutocomplete } from './autocomplete';
 
 const mockAutocompleteInteraction = mockDeep<AutocompleteInteraction>();
 

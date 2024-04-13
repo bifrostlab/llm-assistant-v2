@@ -1,13 +1,7 @@
-import type {
-  AutocompleteInteraction,
-  ChatInputCommandInteraction,
-  SlashCommandBuilder,
-  SlashCommandSubcommandBuilder,
-  SlashCommandSubcommandsOnlyBuilder,
-} from 'discord.js';
+import type { ChatInputCommandInteraction, SlashCommandBuilder, SlashCommandSubcommandBuilder, SlashCommandSubcommandsOnlyBuilder } from 'discord.js';
+import type { AutocompleteHandler } from '../autocompletes/builder';
 
 export type CommandHandler = (interaction: ChatInputCommandInteraction) => Promise<void>;
-export type AutocompleteHandler = (autocomplete: AutocompleteInteraction) => Promise<void>;
 
 export interface Command {
   data: Omit<SlashCommandBuilder, 'addSubcommandGroup' | 'addSubcommand'> | SlashCommandSubcommandsOnlyBuilder;

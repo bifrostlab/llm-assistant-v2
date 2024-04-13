@@ -1,5 +1,5 @@
-import { download } from '../src/review-resume/downloader';
-import { getOutputFileName } from '../src/review-resume/utils';
+import { download } from '../src/slash-commands/review-resume/downloader';
+import { getOutputFileName } from '../src/slash-commands/review-resume/utils';
 
 async function downloadGDrive() {
   const output = getOutputFileName('gdrive');
